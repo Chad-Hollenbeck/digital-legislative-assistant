@@ -1,0 +1,50 @@
+<div class="content-heading">
+  Users
+  <div class="ml-auto">
+    <div class="btn-group" dropdown>
+      <button class="btn btn-link" dropdownToggle>
+        <em class="fa fa-ellipsis-v fa-lg"></em>
+      </button>
+      <ul *dropdownMenu class="dropdown-menu dropdown-menu-right-forced animated fadeInLeft" role="menu">
+        <a class="dropdown-item" [routerLink]="[rs.ROUTES.editUser, 'new']">
+          <em class="fa-fw fa fa-plus mr-2"></em>
+          <span>New user</span>
+        </a>
+        <!--<a class="dropdown-item" href="">
+          <em class="fa-fw fas fa-share mr-2"></em>
+          <span>Import contact</span>
+        </a>
+        <a class="dropdown-item" href="">
+          <em class="fa-fw fas fa-reply mr-2"></em>
+          <span>Export contacts</span>
+        </a>-->
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4 col-sm-6"*ngFor="let u of users">
+    <div class="card card-default" >
+      <div class="card-header">
+        <span [tooltip]="'Admin'" class="float-right text-muted">
+          <em class="fa" [ngClass]="{'fa-star text-warning' : u.role === 'ADMIN'}"></em>
+        </span>
+      </div>
+      <div class="card-body text-center">
+        <img class="mb-2 img-fluid rounded-circle thumb64"src="assets/img/angular.svg"  alt="Contact"/>
+        <h4>{{u.firstName ? u.firstName + ' ' + u.lastName : 'John Doe'}}</h4>
+        <p class="mb-0"><b>{{u.title || 'None Provided'}}</b></p>
+        <p class=""><i> Alpha Team</i></p>
+      </div>
+      <div class="card-footer d-flex">
+<!--        <a class="btn btn-xs btn-primary"
+           href="https://mail.google.com/mail/?view=cm&fs=1&to={{u.email}}&su=SUBJECT&body=BODY" target="_blank">Send
+          Email</a>-->
+        <div class="ml-auto">
+          <a [routerLink]="[rs.ROUTES.editUser, u.uid]" class="btn btn-xs btn-secondary">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

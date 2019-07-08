@@ -1,0 +1,165 @@
+<div class="row">
+  <div class="col-lg-4" *ngIf="user && user.uid">
+    <div class="card card-default">
+      <div class="card-body text-center">
+        <div class="py-4">
+          <img class="img-fluid rounded-circle img-thumbnail thumb96" src="assets/img/angular.svg" alt="Contact"/>
+        </div>
+        <h3 class="m-0 text-bold">{{user.firstName}} {{user.lastName}}</h3>
+        <div class="my-3">
+          <p class="mb-0"><b>{{user.role}}</b></p>
+          <p><i>{{user.title}}</i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card card-default">
+      <div class="card-header d-flex align-items-center">
+        <div class="d-flex justify-content-center col">
+          <div class="h4 m-0 text-center">{{user && user.uid ? 'User Details' : 'New User'}}</div>
+        </div>
+        <div class="d-flex justify-content-end" *ngIf="user && user.uid">
+          <div class="btn-group" dropdown>
+            <button class="btn btn-link" dropdownToggle>
+              <em class="fa fa-ellipsis-v fa-lg text-muted"></em>
+            </button>
+            <ul *dropdownMenu class="dropdown-menu dropdown-menu-right-forced animated fadeInLeft" role="menu">
+              <div class="dropdown-item pointer" *ngIf="!user.disabled">
+                <span class="text-warning">Disable</span>
+              </div>
+              <div class="dropdown-item pointer" *ngIf="user.disabled">
+                <span class="text-warning">Re-Enable</span>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row py-4 justify-content-center">
+          <div class="col-12 col-sm-10">
+            <form class=" form-validate form-horizontal" role="form" name="userForm" novalidate
+                  (ngSubmit)="updateUser($event)" [formGroup]="userFG">
+              <div class="form-group row">
+                <label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right required" for="firstName">First
+                  Name</label>
+                <div class="col-xl-10 col-md-9 col-8">
+                  <input class="form-control" id="firstName" type="text" name="firstName"
+                         formControlName="firstName"/>
+                  <span class="text-danger"
+                        *ngIf="userFG.controls['firstName'].hasError('required') && (userFG.controls['firstName'].dirty)">This field is required</span>
+
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right required" for="lastName">Last
+                  Name</label>
+                <div class="col-xl-10 col-md-9 col-8">
+                  <input class="form-control" id="lastName" type="text" name="lastName" formControlName="lastName"/>
+                  <span class="text-danger"
+                        *ngIf="userFG.controls['lastName'].hasError('required') && (userFG.controls['lastName'].dirty)">This field is required</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right required"
+                       for="title">Title</label>
+                <div class="col-xl-10 col-md-9 col-8">
+                  <input class="form-control" id="title" type="text" name="title" formControlName="title"/>
+                  <span class="text-danger"
+                        *ngIf="userFG.controls['title'].hasError('required') && (userFG.controls['title'].dirty)">This field is required</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right required"
+                       for="role">Role</label>
+                <div class="col-xl-10 col-md-9 col-8">
+                  <select class="form-control" id="role" name="role" [(ngModel)]="user.role"
+                          [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let role of roles" [ngValue]="role.roleId">
+                      {{role.roleName}}
+                    </option>
+                  </select>
+                  <span class="text-danger"
+                        *ngIf="userFG.controls['role'].hasError('required') && (userFG.controls['role'].dirty)">This field is required</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right required"
+                       for="email">Email</label>
+                <div class="col-xl-10 col-md-9 col-8">
+                  <input class="form-control" id="email" type="email" name="email" formControlName="email"/>
+                  <span class="text-danger"
+                        *ngIf="userFG.controls['email'].hasError('required') && (userFG.controls['email'].dirty)">This field is required</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right"
+                       for="phone">Phone</label>
+                <div class="col-xl-10 col-md-9 col-8">
+                  <input class="form-control" id="phone" type="text" name="phone" formControlName="phone"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right"
+                       for="address">Address</label>
+                <div class="col-xl-10 col-md-9 col-8">
+                  <textarea class="form-control" id="address" name="address" formControlName="address"
+                            rows="4"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col text-right">
+                  <button class="btn btn-info pull-right" type="submit" *ngIf="!submitting"
+                          [disabled]="userFG.invalid || userFG.pristine">
+                    {{user.uid ? 'Update' : 'Add'}}
+                  </button>
+
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-spinner class="spinner-primary" *ngIf="loading"></app-spinner>
+
+<!--Enable / Disable Modal-->
+<div class="modal fade" bsModal #userModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" *ngIf="!loading && user">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="userModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title">{{user.disabled ? 'Enable' : 'Disable'}} User</h3>
+      </div>
+      <div class="modal-body bt">
+        <div class="row">
+          <div class="col-xs-12">
+            <p *ngIf="user.disabled">
+              Re-enabling this user <b>will</b> allow them access to the application.
+            </p>
+            <p *ngIf="!user.disabled">
+              Disabling this user will <b>not</b> allow them to log in and access the application.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="button" (click)="userModal.hide()" class="btn btn-default">Cancel</button>
+            <button type="button" (click)="enableUser()" class="btn btn-success pull-right" *ngIf="user.disabled">
+              Enable User
+            </button>
+            <button type="button" (click)="disableUser()" class="btn btn-danger pull-right" *ngIf="!user.disabled">
+              Disable User
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

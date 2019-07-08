@@ -1,0 +1,44 @@
+@import './shared/styles/app/variables.scss';
+
+// Globals
+label.required:after {
+  content: '*';
+  margin-left: 2px;
+  color: $danger;
+}
+
+.block{
+  display: block;
+}
+
+
+app-spinner{
+  &.spinner-sm > .sk-fading-circle{
+    width: 25px;
+    height: 25px;
+    margin: 5px auto;
+  }
+
+  &.spinner-primary .sk-circle:before{
+    background-color: $primary !important;
+  }
+  &.spinner-info .sk-circle:before{
+    background-color: $info !important;
+  }
+  &.spinner-success .sk-circle:before{
+    background-color: $success !important;
+  }
+  &.spinner-warning .sk-circle:before{
+    background-color: $warning !important;
+  }
+  &.spinner-danger .sk-circle:before{
+    background-color: $danger !important;
+  }
+  &.spinner-white .sk-circle:before{
+    background-color: white !important;
+  }
+}
+
+.pointer:hover{
+  cursor: pointer;
+}
