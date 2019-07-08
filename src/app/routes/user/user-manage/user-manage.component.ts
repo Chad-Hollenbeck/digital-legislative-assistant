@@ -9,7 +9,6 @@ import * as _ from 'lodash';
 import {AuthService} from '../../auth/auth.service';
 import {UserRole} from '../../../models/role.model';
 import UserCredential = firebase.auth.UserCredential;
-import {UsePropertyDecorator} from 'codelyzer/propertyDecoratorBase';
 
 @Component({
   selector: 'app-user-manage',
@@ -34,13 +33,10 @@ export class UserManageComponent implements OnInit {
               private rs: RoutesService,
               private auth: AuthService) {
     this.userFG = fb.group({
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
+      displayName: [null, Validators.required],
       title: [null, Validators.required],
-      role: [null, null],
       email: [{value: '', disabled: false}, null],
       address: [{value: '', disabled: false}, null],
-      phone: [{value: '', disabled: false}, null],
       confirmEmail: [{value: '', disabled: false}, null]
     });
 
@@ -77,22 +73,16 @@ export class UserManageComponent implements OnInit {
   }
 
   mapUserToForm() {
-    this.userFG.controls['firstName'].setValue(this.user.firstName);
-    this.userFG.controls['lastName'].setValue(this.user.lastName);
+    this.userFG.controls['displayName'].setValue(this.user.displayName);
     this.userFG.controls['role'].setValue(this.user.role);
     this.userFG.controls['email'].setValue(this.user.email);
     this.userFG.controls['title'].setValue(this.user.title);
-    this.userFG.controls['phone'].setValue(this.user.phone);
-    this.userFG.controls['address'].setValue(this.user.address);
   }
 
   updateUserFromForm() {
-    this.user.firstName = this.userFG.controls['firstName'].value;
-    this.user.lastName = this.userFG.controls['lastName'].value;
+    this.user.displayName = this.userFG.controls['displayName'].value;
     this.user.role = this.userFG.controls['role'].value;
     this.user.title = this.userFG.controls['title'].value;
-    this.user.phone = this.userFG.controls['phone'].value;
-    this.user.address = this.userFG.controls['address'].value;
   }
 
   markAllAsPristine() {
@@ -119,7 +109,7 @@ export class UserManageComponent implements OnInit {
       this.user.email = this.userFG.controls['email'].value;
 
       // Create New User Account
-      this.auth.registerUser(this.user.email).subscribe(
+      this.auth.registerUser(this.user.email, null).subscribe(
         (data: UserCredential) => {
           this.user.uid = data.user.uid; // Assign UID and Save
 

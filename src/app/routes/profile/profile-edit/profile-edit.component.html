@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-lg-4" *ngIf="profile">
+    <div class="card card-default">
+      <div class="card-body text-center">
+        <div class="py-4">
+          <img class="img-fluid rounded-circle img-thumbnail thumb96" src="assets/img/angular.svg" alt="Contact"/>
+        </div>
+        <h3 class="m-0 text-bold">{{profile.displayName}}</h3>
+        <div class="my-3">
+          <p><i>{{profile.title}}</i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card card-default">
+      <div class="card-header d-flex align-items-center">
+        <div class="d-flex justify-content-center col">
+          <div class="h4 m-0 text-center">My Profile</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row py-4 justify-content-center">
+          <div class="col-12 col-sm-10">
+            <form class=" form-validate form-horizontal" role="form" name="profileFormGroup" novalidate
+                  (ngSubmit)="saveProfile($event)" [formGroup]="profileFormGroup">
+              <div class="form-group row">
+                <label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right required" for="displayName">Name</label>
+                <div class="col-xl-10 col-md-9 col-8">
+                  <input class="form-control" id="displayName" type="text" name="displayName"
+                         formControlName="displayName"/>
+                  <span class="text-danger"
+                        *ngIf="profileFormGroup.controls['displayName'].hasError('required') && (profileFormGroup.controls['displayName'].dirty)">This field is required</span>
+
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="text-bold col-xl-2 col-md-3 col-4 col-form-label text-right required"
+                       for="title">Title</label>
+                <div class="col-xl-10 col-md-9 col-8">
+                  <input class="form-control" id="title" type="text" name="title" formControlName="title"/>
+                  <span class="text-danger"
+                        *ngIf="profileFormGroup.controls['title'].hasError('required') && (profileFormGroup.controls['title'].dirty)">This field is required</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col text-right">
+                  <button class="btn btn-info pull-right" type="submit" *ngIf="!submitting"
+                          [disabled]="profileFormGroup.invalid || profileFormGroup.pristine">
+                    Update profile
+                  </button>
+
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-spinner class="spinner-primary" *ngIf="loading"></app-spinner>

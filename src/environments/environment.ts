@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyDZVnp5t-peQ5ZVMx7XI96MKtujaNLjjRk',
-    authDomain: 'oci-angular-template.firebaseapp.com',
-    databaseURL: 'https://oci-angular-template.firebaseio.com',
-    projectId: 'oci-angular-template',
-    storageBucket: 'oci-angular-template.appspot.com',
-    messagingSenderId: '843092396557',
-    appId: '1:843092396557:web:cc0fe224a35b2661'
+    apiKey: 'AIzaSyALQ5fr-URkpsG8eknDYsfUHm4kHVBUDAE',
+    authDomain: 'zen-scheduler.firebaseapp.com',
+    databaseURL: 'https://zen-scheduler.firebaseio.com',
+    projectId: 'zen-scheduler',
+    storageBucket: 'zen-scheduler.appspot.com',
+    messagingSenderId: '687664217410',
+    appId: '1:687664217410:web:8eb1b690878370e9'
   }
 };
 

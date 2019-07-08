@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserblockService} from '../sidebar/userblock/userblock.service';
 import {SettingsService} from '../../core/settings/settings.service';
 import {MenuService} from '../../core/menu/menu.service';
+import {RoutesService} from '../../routes/routes.service';
 
 const screenfull = require('screenfull');
 
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
   isNavSearchVisible: boolean;
   @ViewChild('fsbutton') fsbutton;  // the fullscreen button
 
-  constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService) {
+  constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService, public routerService: RoutesService) {
 
     // show only a few items on demo
     this.menuItems = menu.getMenu().slice(0, 4); // for horizontal layout

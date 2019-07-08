@@ -10,13 +10,15 @@ import {UserblockService} from './sidebar/userblock/userblock.service';
 import {FooterComponent} from './footer/footer.component';
 
 import {SharedModule} from '../shared/shared.module';
+import {RoutesService} from '../routes/routes.service';
 
 @NgModule({
   imports: [
     SharedModule
   ],
   providers: [
-    UserblockService
+    UserblockService,
+    RoutesService
   ],
   declarations: [
     LayoutComponent,

@@ -58,10 +58,10 @@ export class AuthService {
     return this.afa.auth.signInWithEmailLink(email, url);
   }
 
-  registerUser(email) {
+  registerUser(email, pass) {
     const tempFirebase = app.initializeApp(environment.firebase, 'temp' + Date.now());
     return new Observable((observer) => {
-      tempFirebase.auth().createUserWithEmailAndPassword(email, this.createTempPassword()).then(
+      tempFirebase.auth().createUserWithEmailAndPassword(email, pass).then(
         (cred: UserCredential) => {
           cred.user.sendEmailVerification().then(
             () => {

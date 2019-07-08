@@ -6,6 +6,7 @@ import {CustomValidators} from 'ng2-validation';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToasterService} from 'angular2-toaster';
 import {SettingsService} from '../../../core/settings/settings.service';
+// @ts-ignore
 import UserCredential = firebase.auth.UserCredential;
 
 @Component({
@@ -59,14 +60,12 @@ export class RegistrationComponent implements OnInit {
     $event.preventDefault();
 
     if (this.passwordForm.valid) {
-      this.authService.signInWithEmailLink(this.valForm.controls['email'].value, location.href).then(
+      this.authService.registerUser(this.valForm.controls['email'].value, this.passwordForm.controls['password'].value).subscribe(
         (result: UserCredential) => {
-          localStorage.removeItem('registrationEmail');
-          result.user.updatePassword(this.passwordForm.controls['password'].value).then(
-            () => {
-              this.router.navigate([this.rs.ROUTES.home]);
-            }
-          );
+          if (result != null){
+            this.toaster.popAsync('success', '', 'A confirmation email has been sent to your inbox. Please confirm to login');
+            this.router.navigateByUrl(this.routeService.ROUTES.logout);
+          }
         }, (reason: any) => {
           console.log(reason);
         }

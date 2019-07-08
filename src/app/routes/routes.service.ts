@@ -5,13 +5,14 @@ export class RoutesService {
 
   ROUTES = {
     home: '/home',
-    login: '/a/login',
-    logout: '/a/logout',
-    terms: '/a/terms',
-    register: '/a/register',
-    forgotPassword: '/a/reset-password',
-    users: '/u',
-    editUser: '/u/'
+    login: '/auth/login',
+    logout: '/auth/logout',
+    terms: '/auth/terms',
+    register: '/auth/register',
+    forgotPassword: '/auth/reset-password',
+    users: '/users',
+    editUser: '/users/',
+    profile: '/profile'
   };
 
   /*Menu Parts*/
@@ -36,6 +37,12 @@ export class RoutesService {
       link: this.ROUTES.home,
       admin: false,
       icon: 'fa fa-chart-bar'
+    },
+    profile: {
+      text: 'My Profile',
+      link: this.ROUTES.profile,
+      admin: false,
+      icon: 'fa fa-user'
     }
   };
 
