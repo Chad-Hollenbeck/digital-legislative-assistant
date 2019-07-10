@@ -22,7 +22,13 @@ export class MeetingLocationsService {
   }
 
   updateMeetingLocation(location: MeetingLocation) {
-    return this.db.collection('locations/' + this.afa.auth.currentUser.uid + '/location').doc(location.uid).update(this.convertToObj(location));
+    return this.db.collection('locations/' + this.afa.auth.currentUser.uid + '/location')
+      .doc(location.uid).update(this.convertToObj(location));
+  }
+
+  removeMeetingLocation(location: MeetingLocation) {
+    return this.db.collection('locations/' + this.afa.auth.currentUser.uid + '/location')
+      .doc(location.uid).delete();
   }
 
   private convertToObj(model: any) {

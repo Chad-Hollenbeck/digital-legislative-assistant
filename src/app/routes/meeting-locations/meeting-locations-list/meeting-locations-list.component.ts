@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MeetingLocationsService} from '../meeting-locations.service';
 import {MeetingLocation} from '../../../models/location.model';
 import {QuerySnapshot} from '@angular/fire/firestore';
+import * as _ from 'lodash';
+import {RoutesService} from '../../routes.service';
 
 @Component({
   selector: 'app-meeting-locations-list',
@@ -13,7 +15,7 @@ export class MeetingLocationsListComponent implements OnInit {
   meetingLocations: Array<MeetingLocation>;
   loading = true;
 
-  constructor(public locationService: MeetingLocationsService) {
+  constructor(public locationService: MeetingLocationsService, public routeService: RoutesService) {
   }
 
   ngOnInit() {

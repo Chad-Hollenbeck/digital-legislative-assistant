@@ -13,7 +13,7 @@ export class LayoutComponent implements OnInit {
   constructor(router: Router) {
     router.events.subscribe((ev: any) => {
         if (ev instanceof NavigationEnd) {
-          this.hideLayout = (ev.urlAfterRedirects.includes('/a/'));
+          this.hideLayout = (ev.urlAfterRedirects.includes('/auth/'));
         }
       }
     );

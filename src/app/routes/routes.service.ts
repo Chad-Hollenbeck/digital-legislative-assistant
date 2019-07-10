@@ -12,7 +12,9 @@ export class RoutesService {
     forgotPassword: '/auth/reset-password',
     users: '/users',
     editUser: '/users/',
-    profile: '/profile'
+    profile: '/profile',
+    meetingLocations: '/locations',
+    editLocation: '/locations/'
   };
 
   /*Menu Parts*/
@@ -43,6 +45,12 @@ export class RoutesService {
       link: this.ROUTES.profile,
       admin: false,
       icon: 'fa fa-user'
+    },
+    locations: {
+      text: 'Locations',
+      link: this.ROUTES.meetingLocations,
+      admin: false,
+      icon: 'fa fa-building'
     }
   };
 
@@ -61,6 +69,7 @@ export class RoutesService {
       this.menuLinks.headingMain,
       this.menuLinks.dashboard,
       this.menuLinks.users,
+      this.menuLinks.locations,
       this.menuLinks.logout
     ];
   }
