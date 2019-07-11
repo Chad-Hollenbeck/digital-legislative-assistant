@@ -14,7 +14,9 @@ export class RoutesService {
     editUser: '/users/',
     profile: '/profile',
     meetingLocations: '/locations',
-    editLocation: '/locations/'
+    editLocation: '/locations/',
+    teams: '/teams',
+    editTeam: '/teams/',
   };
 
   /*Menu Parts*/
@@ -51,6 +53,12 @@ export class RoutesService {
       link: this.ROUTES.meetingLocations,
       admin: false,
       icon: 'fa fa-building'
+    },
+    teams: {
+      text: 'Teams',
+      link: this.ROUTES.teams,
+      admin: false,
+      icon: 'fa fa-users'
     }
   };
 

@@ -39,8 +39,20 @@ export class UserService {
     }
   }
 
+  getUserMemberships$() {
+    if (this.afa.auth.currentUser) {
+      return this.db.collection('users').doc(this.afa.auth.currentUser.uid).collection('memberships').get();
+    } else {
+      return of(null);
+    }
+  }
+
   storeUserProfile(userProfile: any) {
     localStorage.setItem('currentUser', JSON.stringify(userProfile));
+  }
+
+  getUserProfile() {
+    return JSON.parse(localStorage.getItem('currentUser')) as UserProfile;
   }
 
   private convertToTypelessObject(user: UserProfile) {

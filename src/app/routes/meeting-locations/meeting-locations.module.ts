@@ -5,7 +5,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {RouterModule, Routes} from '@angular/router';
 import {MeetingLocationsService} from './meeting-locations.service';
 import {FormsModule} from '@angular/forms';
-import { MeetingLocationEditComponent } from './meeting-location-edit/meeting-location-edit.component';
+import {MeetingLocationEditComponent} from './meeting-location-edit/meeting-location-edit.component';
 
 const routes: Routes = [
   {path: '', component: MeetingLocationsListComponent},

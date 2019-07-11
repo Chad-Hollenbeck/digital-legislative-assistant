@@ -11,7 +11,8 @@ export const routes = [
       {path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
       {path: 'users', loadChildren: './user/user.module#UserModule', canActivate: [AuthGuard]},
       {path: 'locations', loadChildren: './meeting-locations/meeting-locations.module#MeetingLocationsModule', canActivate: [AuthGuard]},
-      {path: 'profile', loadChildren: './profile/profile.module#ProfileModule', canActivate: [AuthGuard]}
+      {path: 'profile', loadChildren: './profile/profile.module#ProfileModule', canActivate: [AuthGuard]},
+      {path: 'teams', loadChildren: './teams/teams.module#TeamsModule', canActivate: [AuthGuard]}
     ]
   },
 
