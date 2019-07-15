@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {UserblockService} from './userblock.service';
-import {AuthService} from '../../../routes/auth/auth.service';
-import {UserService} from '../../../routes/user/user.service';
-import {QuerySnapshot} from '@angular/fire/firestore';
-import {UserMembership} from '../../../models/user-membership';
+import { UserblockService } from './userblock.service';
+import { AuthService } from '../../../routes/auth/auth.service';
+import { UserService } from '../../../routes/user/user.service';
+import { QuerySnapshot } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-userblock',
@@ -14,7 +13,6 @@ import {UserMembership} from '../../../models/user-membership';
 export class UserblockComponent implements OnInit {
   user: any;
 
-
   constructor(public userblockService: UserblockService, public authService: AuthService, public userService: UserService) {
     this.user = {};
 
@@ -22,16 +20,10 @@ export class UserblockComponent implements OnInit {
       if (!!authData) {
         // Pull Current User
         this.userService.getUserProfile$().subscribe(userProfile => {
-          this.userService.getUserMemberships$().subscribe(
-            (membershipQuery: QuerySnapshot<UserMembership>) => {
-              this.user = {
-                picture: 'assets/img/angular.svg',
-                profile: userProfile,
-                memberships: membershipQuery.docs.map((d) => {
-                  return d.data() as UserMembership;
-                })
-              };
-            });
+          this.user = {
+            picture: 'assets/img/angular.svg',
+            profile: userProfile
+          };
         });
       }
     });

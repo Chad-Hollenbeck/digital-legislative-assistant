@@ -5,23 +5,24 @@
 </div>
 <div class="card card-default">
   <div class="card-header">My Teams
-    <a class="text-info pointer float-right"
-       [routerLink]="[routeService.ROUTES.editTeam, 'new']">Create A Team</a>
+    <a class="text-info pointer float-right" [routerLink]="[routeService.ROUTES.editTeam, 'new']">Create A Team</a>
   </div>
   <table class="table table-striped table-bordered">
     <thead>
-    <tr>
-      <th>&nbsp;</th>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Role</th>
+        <th>Members</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let team of teams">
-      <td class="text-center"><i tooltip="You created this team" [ngClass]="{'fa-star' : team.isOwner, 'fa-star-o' : !team.isOwner }" class="fa text-warning"></i></td>
-      <th><a [routerLink]="[routeService.ROUTES.editTeam, team.teamUID]">{{team.teamName}}</a></th>
-      <td>{{team.teamDescription}}</td>
-    </tr>
+      <tr *ngFor="let team of teams">
+        <th><a [routerLink]="[routeService.ROUTES.editTeam, team.uid]">{{team.name}}</a></th>
+        <td>{{team.description}}</td>
+        <td>{{team.isUserAdmin ? 'Administrator' : 'Member'}}</td>
+        <td>{{team.memberIds.length}}</td>
+      </tr>
     </tbody>
   </table>
 </div>

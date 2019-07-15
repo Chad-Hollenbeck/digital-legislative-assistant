@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {UserProfile} from '../../models/user-profile.model';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {of} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UserProfile } from '../../models/user-profile.model';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { of } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -34,14 +34,6 @@ export class UserService {
   getUserProfile$() {
     if (this.afa.auth.currentUser) {
       return this.db.collection('users').doc(this.afa.auth.currentUser.uid).valueChanges();
-    } else {
-      return of(null);
-    }
-  }
-
-  getUserMemberships$() {
-    if (this.afa.auth.currentUser) {
-      return this.db.collection('users').doc(this.afa.auth.currentUser.uid).collection('memberships').get();
     } else {
       return of(null);
     }

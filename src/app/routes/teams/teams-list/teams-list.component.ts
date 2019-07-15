@@ -1,42 +1,33 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {UserService} from '../../user/user.service';
-import {RoutesService} from '../../routes.service';
-import {Router} from '@angular/router';
-import {UserMembership} from '../../../models/user-membership';
-import {Subscription} from 'rxjs';
-import {QuerySnapshot} from '@angular/fire/firestore';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RoutesService } from '../../routes.service';
+import { Router } from '@angular/router';
+import { QuerySnapshot } from '@angular/fire/firestore';
+import { UserTeamVM } from '../../../models/user-team-vm';
+import { TeamsService } from '../teams.service';
 @Component({
   selector: 'app-teams-list',
   templateUrl: './teams-list.component.html',
   styleUrls: ['./teams-list.component.scss']
 })
 export class TeamsListComponent implements OnInit, OnDestroy {
-  teams: Array<UserMembership>;
+  teams: Array<UserTeamVM>;
 
-  membershipSub: Subscription;
 
-  constructor(public userService: UserService, public routeService: RoutesService, public router: Router) {
+  constructor(public teamService: TeamsService, public routeService: RoutesService, public router: Router) {
   }
 
   ngOnInit() {
-    this.loadUserMemberships();
+    this.loadUserMemberships$();
   }
 
   ngOnDestroy() {
-    if (this.membershipSub) {
-      this.membershipSub.unsubscribe();
-    }
   }
 
-  loadUserMemberships() {
-    this.membershipSub = this.userService.getUserMemberships$().subscribe(
-      (teamQuery: QuerySnapshot<UserMembership>) => {
-        this.teams = teamQuery.docs.map((d) => {
-          return d.data() as UserMembership;
-        });
+  loadUserMemberships$() {
+    this.teamService.getUsersTeams$().then(
+      (value: QuerySnapshot<UserTeamVM>) => {
+        this.teams = value.docs.map((d) => { return d.data() as UserTeamVM; });
       }
-    );
+    )
   }
-
 }

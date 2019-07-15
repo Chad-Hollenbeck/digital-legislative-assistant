@@ -1,13 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ToasterService} from 'angular2-toaster';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserProfile} from '../../../models/user-profile.model';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {UserService} from '../user.service';
-import {RoutesService} from '../../routes.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToasterService } from 'angular2-toaster';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserProfile } from '../../../models/user-profile.model';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { UserService } from '../user.service';
+import { RoutesService } from '../../routes.service';
 import * as _ from 'lodash';
-import {AuthService} from '../../auth/auth.service';
-import {UserRole} from '../../../models/role.model';
+import { AuthService } from '../../auth/auth.service';
+import { UserRole } from '../../../models/role.model';
 import UserCredential = firebase.auth.UserCredential;
 
 @Component({
@@ -26,18 +26,18 @@ export class UserManageComponent implements OnInit {
 
 
   constructor(private toast: ToasterService,
-              fb: FormBuilder,
-              private activeRoute: ActivatedRoute,
-              private userService: UserService,
-              private router: Router,
-              private rs: RoutesService,
-              private auth: AuthService) {
+    fb: FormBuilder,
+    private activeRoute: ActivatedRoute,
+    private userService: UserService,
+    private router: Router,
+    private rs: RoutesService,
+    private auth: AuthService) {
     this.userFG = fb.group({
       displayName: [null, Validators.required],
       title: [null, Validators.required],
-      email: [{value: '', disabled: false}, null],
-      address: [{value: '', disabled: false}, null],
-      confirmEmail: [{value: '', disabled: false}, null]
+      email: [{ value: '', disabled: false }, null],
+      address: [{ value: '', disabled: false }, null],
+      confirmEmail: [{ value: '', disabled: false }, null]
     });
 
     this.roles = this.auth.getRoles();

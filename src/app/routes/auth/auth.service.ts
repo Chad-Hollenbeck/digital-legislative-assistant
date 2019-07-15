@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {User} from 'firebase';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {environment} from '../../../environments/environment';
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from 'firebase';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { environment } from '../../../environments/environment';
 import * as app from 'firebase/app';
-import {Observable} from 'rxjs';
-import {UserRole} from '../../models/role.model';
+import { Observable } from 'rxjs';
+import { UserRole } from '../../models/role.model';
 import UserCredential = firebase.auth.UserCredential;
 
 @Injectable()
@@ -18,8 +18,8 @@ export class AuthService {
   /*Roles List*/
   getRoles(): Array<UserRole> {
     return [
-      {roleId: 'ADMIN', roleName: 'Administrator'},
-      {roleId: 'USER', roleName: 'User'}
+      { roleId: 'ADMIN', roleName: 'Administrator' },
+      { roleId: 'USER', roleName: 'User' }
     ];
   }
 
@@ -37,6 +37,10 @@ export class AuthService {
   /*User Account*/
   getUserAccount$() {
     return this.afa.authState;
+  }
+
+  getUserUID() {
+    return this.afa.auth.currentUser.uid;
   }
 
   /* Force the user to re-authorize after the window/tab is closed */
@@ -79,9 +83,9 @@ export class AuthService {
 
   updateProfileDisplayName(user: User, username: string, photoUrl: string) {
     if (user) {
-      return user.updateProfile({displayName: username, photoURL: photoUrl});
+      return user.updateProfile({ displayName: username, photoURL: photoUrl });
     } else {
-      return this.afa.auth.currentUser.updateProfile({displayName: username, photoURL: photoUrl});
+      return this.afa.auth.currentUser.updateProfile({ displayName: username, photoURL: photoUrl });
     }
   }
 
