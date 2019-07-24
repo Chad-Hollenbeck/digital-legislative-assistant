@@ -1,8 +1,10 @@
 export class MeetingLocation {
-  uid: string;
-  name: string;
-  address: string;
-  zipCode: string;
-  roomDesignation: string;
-  notes: string;
+	uid: string;
+	name: string;
+	address: string;
+	zipCode: string;
+	roomDesignation: string;
+	notes: string;
+	isDigitalMeeting: boolean;
+	digitalLink: string;
 }
