@@ -3,16 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  firebase: {
-    apiKey: 'AIzaSyALQ5fr-URkpsG8eknDYsfUHm4kHVBUDAE',
-    authDomain: 'zen-scheduler.firebaseapp.com',
-    databaseURL: 'https://zen-scheduler.firebaseio.com',
-    projectId: 'zen-scheduler',
-    storageBucket: 'zen-scheduler.appspot.com',
-    messagingSenderId: '687664217410',
-    appId: '1:687664217410:web:8eb1b690878370e9'
-  }
+	production: false,
+	firebase: {
+		apiKey: "AIzaSyAGD4mxMgOSfIAJErp1nD0nKcgJJjLFttk",
+		authDomain: "blocplanner.firebaseapp.com",
+		databaseURL: "https://blocplanner.firebaseio.com",
+		projectId: "blocplanner",
+		storageBucket: "",
+		messagingSenderId: "873276577691",
+		appId: "1:873276577691:web:3deb6787d1a1ceb5"
+	}
 };
 
 /*
