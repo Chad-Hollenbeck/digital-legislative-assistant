@@ -5,6 +5,4 @@ export class MeetingLocation {
 	zipCode: string;
 	roomDesignation: string;
 	notes: string;
-	isDigitalMeeting: boolean;
-	digitalLink: string;
 }

@@ -1,6 +1,6 @@
 export class Contact {
 	uid: string;
-	name: string;
+	contactName: string;
 	jobTitle: string;
 	organization: string;
 	email: string;
