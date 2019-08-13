@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { environment } from '../../../environments/environment';
+import { environment } from '@env/environment';
 import * as app from 'firebase/app';
 import { Observable } from 'rxjs';
-import { UserRole } from '../../models/role.model';
 import UserCredential = firebase.auth.UserCredential;
 
 @Injectable()
@@ -16,7 +15,7 @@ export class AuthService {
   }
 
   /*Roles List*/
-  getRoles(): Array<UserRole> {
+  getRoles(): Array<any> {
     return [
       { roleId: 'ADMIN', roleName: 'Administrator' },
       { roleId: 'USER', roleName: 'User' }

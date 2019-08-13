@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Team } from 'src/app/models/team.model';
+import { Team } from '@models/team.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RoutesService } from '../../routes.service';
-import { TeamsService } from '../teams.service';
+import { RoutesService } from '@features/routes.service';
+import { TeamsService } from '@features/teams/teams.service';
 import { ToasterService } from 'angular2-toaster';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { DocumentReference } from '@angular/fire/firestore';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '@features/auth/auth.service';
 
 @Component({
   selector: 'app-teams-edit',
@@ -102,9 +102,9 @@ export class TeamsEditComponent implements OnInit, OnDestroy {
             () => {
               this.toaster.popAsync('success', null, 'Team Created');
             }
-          )
+          );
         }
-      )
+      );
     } else {
       // update
       this.mapFormToTeam();
@@ -113,7 +113,7 @@ export class TeamsEditComponent implements OnInit, OnDestroy {
         () => {
           this.toaster.popAsync('success', '', 'Team updated');
         }
-      )
+      );
     }
   }
 
@@ -125,6 +125,6 @@ export class TeamsEditComponent implements OnInit, OnDestroy {
       (err) => {
         console.log(err);
       }
-    )
+    );
   }
 }

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import * as _ from 'lodash';
-import {UserProfile} from '../../../models/user-profile.model';
-import {RoutesService} from '../../routes.service';
+import {UserProfile} from '@models/user-profile.model';
+import {RoutesService} from '@features/routes.service';
 import {QuerySnapshot} from '@angular/fire/firestore';
 
 @Component({

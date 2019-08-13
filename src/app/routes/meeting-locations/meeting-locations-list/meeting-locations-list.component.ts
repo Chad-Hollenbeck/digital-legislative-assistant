@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MeetingLocationsService} from '../meeting-locations.service';
-import {MeetingLocation} from '../../../models/location.model';
+import {MeetingLocation} from '@models/location.model';
 import {QuerySnapshot} from '@angular/fire/firestore';
 import * as _ from 'lodash';
-import {RoutesService} from '../../routes.service';
+import {RoutesService} from '@features/routes.service';
 
 @Component({
   selector: 'app-meeting-locations-list',

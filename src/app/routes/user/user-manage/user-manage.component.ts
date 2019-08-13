@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserProfile } from '../../../models/user-profile.model';
+import { UserProfile } from '@models/user-profile.model';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UserService } from '../user.service';
-import { RoutesService } from '../../routes.service';
+import { RoutesService } from '@features/routes.service';
 import * as _ from 'lodash';
-import { AuthService } from '../../auth/auth.service';
-import { UserRole } from '../../../models/role.model';
+import { AuthService } from '@features/auth/auth.service';
 import UserCredential = firebase.auth.UserCredential;
 
 @Component({
@@ -18,7 +17,7 @@ import UserCredential = firebase.auth.UserCredential;
 export class UserManageComponent implements OnInit {
   user: UserProfile;
   userFG: FormGroup;
-  roles: Array<UserRole>;
+  roles: Array<any>;
   loading = true;
   submitting = false;
 

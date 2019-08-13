@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserProfile} from '../../../models/user-profile.model';
-import {UserService} from '../../user/user.service';
-import {AuthService} from '../../auth/auth.service';
+import {UserProfile} from '@models/user-profile.model';
+import {UserService} from '@features/user/user.service';
+import {AuthService} from '@features/auth/auth.service';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {ToasterService} from 'angular2-toaster';
 
@@ -65,7 +65,7 @@ export class ProfileEditComponent implements OnInit {
           this.mapUserProfileToForm(profileData);
           this.loading = false;
         } else {
-          //fetch auth user and populate the UID
+          // fetch auth user and populate the UID
           this.authService.getUserAccount$().subscribe(
             (acc) => {
               this.profile.uid = acc.uid;

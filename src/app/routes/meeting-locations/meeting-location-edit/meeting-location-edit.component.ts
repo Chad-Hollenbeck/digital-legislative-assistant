@@ -2,10 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ToasterService} from 'angular2-toaster';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {RoutesService} from '../../routes.service';
+import {RoutesService} from '@features/routes.service';
 import * as _ from 'lodash';
-import {MeetingLocationsService} from '../meeting-locations.service';
-import {MeetingLocation} from '../../../models/location.model';
+import {MeetingLocationsService} from '@features/meeting-locations/meeting-locations.service';
+import {MeetingLocation} from '@models/location.model';
 
 @Component({
   selector: 'app-meeting-location-edit',

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {MeetingLocation} from '../../models/location.model';
+import {MeetingLocation} from '@models/location.model';
 
 @Injectable()
 export class MeetingLocationsService {

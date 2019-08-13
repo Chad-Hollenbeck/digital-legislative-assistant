@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Team } from 'src/app/models/team.model';
+import { Team } from '@models/team.model';
 
 @Injectable()
 export class TeamsService {
