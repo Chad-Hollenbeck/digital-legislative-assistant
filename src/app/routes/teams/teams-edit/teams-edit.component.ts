@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { DocumentReference } from '@angular/fire/firestore';
 import { AuthService } from '@features/auth/auth.service';
+import { TeamMember } from '@models/team-member.model';
 
 @Component({
   selector: 'app-teams-edit',
@@ -93,7 +94,13 @@ export class TeamsEditComponent implements OnInit, OnDestroy {
       this.mapFormToTeam();
 
       // create members list.
-      this.team.memberIds = [this.authService.getUserUID()];
+      const m: TeamMember = {
+        uid: this.authService.getUserUID(),
+        displayName: this.authService.getUserDisplayName(),
+        isAdmin: true
+      } as TeamMember;
+
+      this.team.members = [m];
 
       this.teamService.addTeam(this.team).then(
         (val: DocumentReference) => {

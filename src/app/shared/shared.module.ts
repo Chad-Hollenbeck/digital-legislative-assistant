@@ -24,7 +24,7 @@ import {BsDatepickerModule, DatepickerModule} from 'ngx-bootstrap/datepicker';
 
 import {FlotDirective} from './directives/flot/flot.directive';
 import {SparklineDirective} from './directives/sparkline/sparkline.directive';
-import {EasypiechartDirective} from './directives/easypiechart/easypiechart.directive';
+// import {EasypiechartDirective} from './directives/easypiechart/easypiechart.directive';
 import {ColorsService} from './colors/colors.service';
 import {CheckallDirective} from './directives/checkall/checkall.directive';
 import {VectormapDirective} from './directives/vectormap/vectormap.directive';
@@ -65,7 +65,7 @@ import {SpinnerComponent} from './spinner/spinner.component';
   declarations: [
     FlotDirective,
     SparklineDirective,
-    EasypiechartDirective,
+    // EasypiechartDirective,
     CheckallDirective,
     VectormapDirective,
     NowDirective,
@@ -98,7 +98,7 @@ import {SpinnerComponent} from './spinner/spinner.component';
     TypeaheadModule,
     FlotDirective,
     SparklineDirective,
-    EasypiechartDirective,
+    // EasypiechartDirective,
     CheckallDirective,
     VectormapDirective,
     NowDirective,

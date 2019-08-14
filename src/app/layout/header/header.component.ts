@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {UserblockService} from '../sidebar/userblock/userblock.service';
-import {SettingsService} from '../../core/settings/settings.service';
-import {MenuService} from '../../core/menu/menu.service';
-import {RoutesService} from '../../routes/routes.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserblockService } from '../sidebar/userblock/userblock.service';
+import { SettingsService } from '@core/settings/settings.service';
+import { MenuService } from '@core/menu/menu.service';
+import { RoutesService } from '@features/routes.service';
 
-const screenfull = require('screenfull');
+// const screenfull = require('screenfull');
 
 @Component({
   selector: 'app-header',
@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit {
   isNavSearchVisible: boolean;
   @ViewChild('fsbutton') fsbutton;  // the fullscreen button
 
-  constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService, public routerService: RoutesService) {
+  constructor(public menu: MenuService, public userblockService: UserblockService,
+    public settings: SettingsService, public routerService: RoutesService) {
 
     // show only a few items on demo
     this.menuItems = menu.getMenu().slice(0, 4); // for horizontal layout
@@ -29,17 +30,17 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.isNavSearchVisible = false;
 
-    var ua = window.navigator.userAgent;
+    const ua = window.navigator.userAgent;
     if (ua.indexOf('MSIE ') > 0 || !!ua.match(/Trident.*rv\:11\./)) { // Not supported under IE
       this.fsbutton.nativeElement.style.display = 'none';
     }
 
-    // Switch fullscreen icon indicator
-    const el = this.fsbutton.nativeElement.firstElementChild;
-    screenfull.on('change', () => {
-      if (el)
-        el.className = screenfull.isFullscreen ? 'fa fa-compress' : 'fa fa-expand';
-    });
+    // // Switch fullscreen icon indicator
+    // const el = this.fsbutton.nativeElement.firstElementChild;
+    // screenfull.on('change', () => {
+    //   if (el)
+    //     el.className = screenfull.isFullscreen ? 'fa fa-compress' : 'fa fa-expand';
+    // });
   }
 
   toggleUserBlock(event) {
@@ -74,9 +75,9 @@ export class HeaderComponent implements OnInit {
     return this.settings.getLayoutSetting('isCollapsedText');
   }
 
-  toggleFullScreen(event) {
-    if (screenfull.enabled) {
-      screenfull.toggle();
-    }
-  }
+  // toggleFullScreen(event) {
+  //   if (screenfull.enabled) {
+  //     screenfull.toggle();
+  //   }
+  // }
 }

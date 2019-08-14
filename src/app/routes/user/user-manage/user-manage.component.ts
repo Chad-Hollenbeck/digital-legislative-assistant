@@ -73,14 +73,12 @@ export class UserManageComponent implements OnInit {
 
   mapUserToForm() {
     this.userFG.controls['displayName'].setValue(this.user.displayName);
-    this.userFG.controls['role'].setValue(this.user.role);
     this.userFG.controls['email'].setValue(this.user.email);
     this.userFG.controls['title'].setValue(this.user.title);
   }
 
   updateUserFromForm() {
     this.user.displayName = this.userFG.controls['displayName'].value;
-    this.user.role = this.userFG.controls['role'].value;
     this.user.title = this.userFG.controls['title'].value;
   }
 
@@ -94,13 +92,6 @@ export class UserManageComponent implements OnInit {
     $ev.preventDefault();
 
     this.submitting = true;
-
-    if (!this.user.role) {
-      this.toast.popAsync('warning', '', 'Please select a role for this user before saving');
-      this.submitting = false;
-      return;
-    }
-
     this.updateUserFromForm();
 
     if (!this.user.uid) {
@@ -140,31 +131,5 @@ export class UserManageComponent implements OnInit {
       );
     }
 
-  }
-
-  disableUser() {
-    // soft delete the user
-    const usr = _.clone(this.user);
-    usr.disabled = true;
-    this.userService.updateUser(usr).then(
-      () => {
-        // cloudFX triggered which disables the user's auth account
-        this.toast.popAsync('success', '', 'User Disabled');
-        this.userModal.hide();
-      }
-    );
-  }
-
-  enableUser() {
-    // soft enable the user
-    const usr = _.clone(this.user);
-    usr.disabled = false;
-    this.userService.updateUser(usr).then(
-      () => {
-        // cloudFX triggered which disables the user's auth account
-        this.toast.popAsync('success', '', 'User Enabled');
-        this.userModal.hide();
-      }
-    );
   }
 }

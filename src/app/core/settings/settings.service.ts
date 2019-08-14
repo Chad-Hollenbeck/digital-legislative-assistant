@@ -12,7 +12,7 @@ export class SettingsService {
     // User Settings
     // -----------------------------------
     this.user = {
-      name: 'Lil Hoot',
+      name: 'Admin',
       job: 'ng-developer',
       picture: 'assets/img/user/02.jpg'
     };
@@ -20,9 +20,9 @@ export class SettingsService {
     // App Settings
     // -----------------------------------
     this.app = {
-      name: 'OCI Angle - Firebase',
-      description: 'Seed Template',
-      year: ((new Date()).getFullYear())
+      name: 'Angle - BlocPlanner',
+      description: 'The last legislative planner you\'ll ever need',
+      year: 2019
     };
 
     // Layout Settings

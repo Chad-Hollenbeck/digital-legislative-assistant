@@ -42,6 +42,14 @@ export class AuthService {
     return this.afa.auth.currentUser.uid;
   }
 
+  getUserEmail() {
+    return this.afa.auth.currentUser.email;
+  }
+
+  getUserDisplayName() {
+    return this.afa.auth.currentUser.displayName;
+  }
+
   /* Force the user to re-authorize after the window/tab is closed */
   setPersistence() {
     return this.afa.auth.setPersistence('session');
