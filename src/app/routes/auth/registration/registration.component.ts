@@ -1,11 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../auth.service';
-import {RoutesService} from '../../routes.service';
-import {CustomValidators} from 'ng2-validation';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ToasterService} from 'angular2-toaster';
-import {SettingsService} from '../../../core/settings/settings.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { AuthService } from '../auth.service';
+import { CustomValidators } from 'ng2-validation';
+import { ROUTES } from '@features/routes.enum';
+import { SettingsService } from '@core/settings/settings.service';
+import { ToasterService } from 'angular2-toaster';
+
+
+
+
+
 // @ts-ignore
 import UserCredential = firebase.auth.UserCredential;
 
@@ -16,7 +22,6 @@ import UserCredential = firebase.auth.UserCredential;
 })
 export class RegistrationComponent implements OnInit {
 
-  rs: RoutesService;
   settings: SettingsService;
   loading = true;
   submitted = false;
@@ -24,16 +29,13 @@ export class RegistrationComponent implements OnInit {
   valForm: FormGroup;
 
 
-  constructor(private routeService: RoutesService,
-              private router: Router,
-              private authService: AuthService,
-              private route: ActivatedRoute,
-              fb: FormBuilder,
-              private toaster: ToasterService,
-              private settingsService: SettingsService) {
+  constructor(private router: Router,
+    private authService: AuthService,
+    fb: FormBuilder,
+    private toaster: ToasterService,
+    private settingsService: SettingsService) {
 
-    this.rs = this.routeService;
-    this.settings = settingsService;
+    this.settings = this.settingsService;
 
     const password = new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9]{6,10}$')]));
     const certainPassword = new FormControl('', CustomValidators.equalTo(password));
@@ -52,19 +54,18 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.valForm.controls['email'].setValue(localStorage.getItem('registrationEmail'));
     this.loading = false;
   }
 
-  completeRegistration($event) {
+  registerNewUser($event: any) {
     $event.preventDefault();
 
     if (this.passwordForm.valid) {
       this.authService.registerUser(this.valForm.controls['email'].value, this.passwordForm.controls['password'].value).subscribe(
         (result: UserCredential) => {
-          if (result != null){
+          if (result != null) {
             this.toaster.popAsync('success', '', 'A confirmation email has been sent to your inbox. Please confirm to login');
-            this.router.navigateByUrl(this.routeService.ROUTES.logout);
+            this.router.navigateByUrl(ROUTES.logout);
           }
         }, (reason: any) => {
           console.log(reason);
@@ -72,6 +73,4 @@ export class RegistrationComponent implements OnInit {
       );
     }
   }
-
-
 }

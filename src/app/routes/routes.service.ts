@@ -1,23 +1,10 @@
 import {Injectable} from '@angular/core';
+import {ROUTES} from './routes.enum';
 
 @Injectable()
 export class RoutesService {
 
-  ROUTES = {
-    home: '/home',
-    login: '/auth/login',
-    logout: '/auth/logout',
-    terms: '/auth/terms',
-    register: '/auth/register',
-    forgotPassword: '/auth/reset-password',
-    users: '/users',
-    editUser: '/users/',
-    profile: '/profile',
-    meetingLocations: '/locations',
-    editLocation: '/locations/',
-    teams: '/teams',
-    editTeam: '/teams/',
-  };
+
 
   /*Menu Parts*/
   menuLinks = {
@@ -27,36 +14,36 @@ export class RoutesService {
     },
     logout: {
       text: 'Log Out',
-      link: this.ROUTES.logout,
+      link: ROUTES.logout,
       icon: 'fa fa-sign-out-alt'
     },
     users: {
       text: 'Users',
-      link: this.ROUTES.users,
+      link: ROUTES.users,
       admin: true,
       icon: 'fa fa-users'
     },
     dashboard: {
       text: 'Dashboard',
-      link: this.ROUTES.home,
+      link: ROUTES.home,
       admin: false,
       icon: 'fa fa-chart-bar'
     },
     profile: {
       text: 'My Profile',
-      link: this.ROUTES.profile,
+      link: ROUTES.profile,
       admin: false,
       icon: 'fa fa-user'
     },
     locations: {
       text: 'Locations',
-      link: this.ROUTES.meetingLocations,
+      link: ROUTES.meetingLocations,
       admin: false,
       icon: 'fa fa-building'
     },
     teams: {
       text: 'Teams',
-      link: this.ROUTES.teams,
+      link: ROUTES.teams,
       admin: false,
       icon: 'fa fa-users'
     }
@@ -66,13 +53,9 @@ export class RoutesService {
   constructor() {
   }
 
-  byName(name) {
-    return (this.ROUTES[name] || '/home');
-  }
 
   /*Menu*/
   getMenu() {
-
     return [
       this.menuLinks.headingMain,
       this.menuLinks.dashboard,
